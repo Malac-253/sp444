@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainViewController">
+   <left>
+      <SplitPane orientation="VERTICAL" prefHeight="360.0" prefWidth="25.0" BorderPane.alignment="CENTER">
+         <items>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00baff" height="511.0" stroke="#ff080800" strokeType="INSIDE" width="21.0" />
+         </items>
+      </SplitPane>
+   </left>
+   <bottom>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <items>
+            <Button id="SeePlan" fx:id="SeePlans" mnemonicParsing="false" onAction="#onClickSeePlans" text="See Plans">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="See the List of All Business Plans" />
+               </tooltip>
+            </Button>
+            <Button id="MakePlan" fx:id="MakePlan" mnemonicParsing="false" onAction="#onClickMakePlan" prefHeight="30.0" prefWidth="88.0" text="Make Plan">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <tooltip>
+                  <Tooltip text="Create a New Empty Business Plan" />
+               </tooltip>
+            </Button>
+        </items>
+      </ToolBar>
+   </bottom>
+</BorderPane>
