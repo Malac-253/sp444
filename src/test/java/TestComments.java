@@ -1,10 +1,9 @@
-package main;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+
+import org.junit.jupiter.api.Test;
+
 import models.BusinessPlan;
 import models.Comment;
 import models.MyRemoteClient;
@@ -12,40 +11,30 @@ import models.MyRemoteImpl;
 import models.Person;
 import models.VMOSA;
 
-import views.LoginViewController;
-
-//import views.MainViewController;
-
-public class Main extends Application {
-	
+public class TestComments {
 	static MyRemoteImpl Mainserver;
 	static MyRemoteClient UserclientModel;
-	private boolean internalTesting = true;
-
-	@Override
-	public void start(Stage stage) throws Exception {
-			
-		// Block 1 - Server Set up
-			if(internalTesting){System.out.println("InTt - (1 X): Block 1 - Server Set up");}
+	
+	@Test
+	void testComments()
+	{
+		//test class
+		Person testD=new Person("testAD","testAD","000", true);		
+		Comment test1 = new Comment(testD,"storedUser.add(testD)");
+		assertEquals("storedUser.add(testD)",test1.getCommentString());
+		System.out.println(test1.getDate());
 		
+		//test in System
 			//Starting main Server
-				Mainserver = new MyRemoteImpl();if(internalTesting){System.out.println("InTt - (1.1): Starting main Server");}
-			
-			
-			//The RMI Stuff - load the Registry - with host
-				//int host = 1099;
-				//Registry registry = LocateRegistry.createRegistry(host);
-				if(internalTesting){System.out.println("InTt - (1.2): load the Registry");}
-				
-
+			Mainserver = new MyRemoteImpl();
 			//adding test user
-				ArrayList <Person> storedUser=new ArrayList<Person>();
-				Person Master=new Person("Master","x10808A","000", true);	storedUser.add(Master);
-				Person testA=new Person("malachi","centre","000", false);	storedUser.add(testA);
-				Person testB=new Person("test","test","000", false);		storedUser.add(testB);
-				Person testC=new Person("bradshaw","MKB","000", true);		storedUser.add(testC);
-				Person testD=new Person("testAD","testAD","000", true);		storedUser.add(testD);
-			
+			ArrayList <Person> storedUser=new ArrayList<Person>();
+			Person Master=new Person("Master","x10808A","000", true);	storedUser.add(Master);
+			Person testA=new Person("malachi","centre","000", false);	storedUser.add(testA);
+			Person testB=new Person("test","test","000", false);		storedUser.add(testB);
+			Person testC=new Person("bradshaw","MKB","000", true);		storedUser.add(testC);
+			storedUser.add(testD);
+	
 			//adding test BP
 				ArrayList <BusinessPlan> storedBP=new ArrayList<BusinessPlan>();
 				//Example A
@@ -132,7 +121,6 @@ public class Main extends Application {
 					BPExampleB.root.children.get(0).addComment(new Comment(testA,"I - 00"));
 					BPExampleB.root.children.get(0).addComment(new Comment(testB,"B - 00"));
 					BPExampleB.root.children.get(0).addComment(new Comment(testC,"TAC - 00"));
-					BPExampleD.root.children.get(0).content=("I will do better in teh future. And i will put this stuff to use this summer");
 					BPExampleD.addSection(BPExampleD.root.children.get(0));
 					BPExampleD.root.addComment(new Comment(Master,"Good luck - 00"));
 					BPExampleD.root.addComment(new Comment(testA,"For successful completion of your plans - 00"));
@@ -141,37 +129,89 @@ public class Main extends Application {
 				storedBP.add(BPExampleD);
 			//adding to BP's and user to the main Server
 				Mainserver.setStoredBP(storedBP);
-				if(internalTesting){System.out.println("InTt - (1.3): adding test BP");}
 				Mainserver.setStoredUser(storedUser);
-				if(internalTesting){System.out.println("InTt - (1.4): adding test user");}
 		
-		
-		// Block 2 - Setting up to log in
-			if(internalTesting){System.out.println("InTt - (2 X): Block 2 - Setting up to log in");}
-			
 			//Initiating the client - Give the client the Server 
-				UserclientModel = new MyRemoteClient(Mainserver);if(internalTesting){System.out.println("InTt - (2.1): Initiating the client with Mainserver");}
+				UserclientModel = new MyRemoteClient(Mainserver);
+				
+			//Admin user - //login
+				UserclientModel.askForLogin("testAD","testAD");
+				assertEquals(testD.toString(),UserclientModel.getLoginPerson().toString());
 			
-			//Getting Login View and Controller
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(Main.class.getResource("../views/LoginView.fxml")); 
-				BorderPane LoginView = loader.load(); //Get view
-				LoginViewController ControllerA = loader.getController(); //Get controller
-				if(internalTesting){System.out.println("InTt - (2.2): Getting Login View and Controller");}
-						
-				ControllerA.setClient(UserclientModel);//Setting the Client
-				ControllerA.setStage(stage);//the stage
-				if(internalTesting){System.out.println("InTt - (2.3): Setting the Client to work with");}
-						
-			//Loading up the main Scene
-				Scene s = new Scene(LoginView);
-				stage.setScene(s);
-				stage.show();
-				if(internalTesting){System.out.println("InTt - (2.4): Initiating the stage and view");}
-		
+			//Reading comments
+				//test A
+				UserclientModel.askForBP(2017);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).getCommentString(),"Physics uses simple models - 12");
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(1).getCommentString(),"Almost all of the technology - 56");
+				
+				//test B
+				UserclientModel.askForBP(2018);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).getCommentString(),"CSC 374 Theory of Computation - 56");
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(1).getCommentString(),"his is a course in the theoretical foundations of computer - 12");
+				//System.out.println(UserclientModel.getCurrentBP().getRoot().getChildren().get(0).getComments().get(0).getCommentString());
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getChildren().get(0).getComments().get(0).getCommentString(),"Learning Outcomes (Postconditions) - 20");
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getChildren().get(0).getComments().get(1).getCommentString(),"different formal languages - 95");
+			
+			//Adding comments and saving
+				UserclientModel.askForBP(2020);
+				UserclientModel.getCurrentBP().getRoot().addComment(new Comment(UserclientModel.getLoginPerson(),"I will do this right - 100 100"));
+				UserclientModel.uploadBP();
+				UserclientModel.askForBP(2019);
+				UserclientModel.getCurrentBP().getRoot().addComment(new Comment(UserclientModel.getLoginPerson(),"Hey I passed this class to - 10"));
+				UserclientModel.getCurrentBP().getRoot().getChildren().get(0).addComment(new Comment(UserclientModel.getLoginPerson(),"Hey I passed this class to - 20"));
+				UserclientModel.uploadBP();
+				
+				//checking added
+				UserclientModel.askForBP(2020);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(4).getCommentString(),"I will do this right - 100 100");
+				UserclientModel.askForBP(2019);
+				//System.out.println(UserclientModel.getCurrentBP().getRoot().getChildren().get(0).getComments().get(0).getCommentString());
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(4).getCommentString(),"Hey I passed this class to - 10");
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getChildren().get(0).getComments().get(0).getCommentString(),"Hey I passed this class to - 20");
+			
+			//deleting - can delete any comment and it will update
+				UserclientModel.askForBP(2018);
+				
+				UserclientModel.getCurrentBP().getRoot().deleteComment(3);
+				UserclientModel.getCurrentBP().getRoot().deleteComment(0);
+				UserclientModel.getCurrentBP().getRoot().deleteComment(0);
+				
+				//checking that only the 3rd one remains
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).getCommentString(),"state automata and regular expressions - 67");
+				
+				//saving
+				UserclientModel.uploadBP();
+				UserclientModel.askForBP(2019);
+				
+				UserclientModel.getCurrentBP().getRoot().deleteComment(0);
+				UserclientModel.getCurrentBP().getRoot().deleteComment(0);
+				UserclientModel.getCurrentBP().getRoot().deleteComment(0);
+				UserclientModel.uploadBP();
+				
+				UserclientModel.askForBP(2018);
+				
+				//checking that only the 3rd one remains
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).getCommentString(),"state automata and regular expressions - 67");
+			
+			//resolving Comments
+				UserclientModel.askForBP(2019);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).getCommentString(),"French and English sound very different - 61");
+				UserclientModel.getCurrentBP().getRoot().getComments().get(0).resolvedComment();
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).isActive(),false);
+				UserclientModel.uploadBP();
+				//saving and doing the next one
+				UserclientModel.askForBP(2018);
+				UserclientModel.getCurrentBP().getRoot().getComments().get(0).resolvedComment();
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).isActive(),false);
+				UserclientModel.uploadBP();
+				
+				//checking the resolves
+				UserclientModel.askForBP(2019);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).isActive(),false);
+				UserclientModel.askForBP(2018);
+				assertEquals(UserclientModel.getCurrentBP().getRoot().getComments().get(0).isActive(),false);
+				
 	}
-	public static void main (String [] args) {
-		launch(args);
-		//run it
-	}
+	
+	
 }

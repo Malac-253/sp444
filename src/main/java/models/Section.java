@@ -11,6 +11,7 @@ public class Section implements Serializable
 	public String content = "";
 	public Section parent = null;
 	public ArrayList<Section> children = new ArrayList<Section>();
+	public ArrayList<Comment> comments = new ArrayList<Comment>();
 
 	// default constructor for XML
 	public Section()
@@ -89,4 +90,25 @@ public class Section implements Serializable
 	{
 		children.remove(child);
 	}
+	
+	//adds comment
+	public void addComment(Comment c)
+	{
+		comments.add(c);
+	}
+	
+	//delete comment
+	public void deleteComment(int index)
+	{
+		comments.remove(index);
+	}
+	
+	public ArrayList<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(ArrayList<Comment> comments) {
+		this.comments = comments;
+	}
+
 }

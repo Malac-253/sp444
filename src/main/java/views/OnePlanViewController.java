@@ -6,10 +6,16 @@ package views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import models.BusinessPlan;
 import models.MyRemoteClient;
 import models.Section;
 
@@ -35,6 +41,25 @@ public class OnePlanViewController {
     private TreeView<?> TheTreeView; // Value injected by FXMLLoader
 
     private TreeView<String> TheTreeView2;
+    
+    @FXML // fx:id="viewComments"
+    private Button viewComments; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="commentListView"
+    private ListView<?> commentListView; // Value injected by FXMLLoader
+
+    @FXML // fx:id="commentResolve"
+    private Button commentResolve; // Value injected by FXMLLoader
+
+    @FXML // fx:id="commentDelete"
+    private Button commentDelete; // Value injected by FXMLLoader
+
+    @FXML // fx:id="commentAddText"
+    private TextArea commentAddText; // Value injected by FXMLLoader
+
+    @FXML // fx:id="commentAdd"
+    private Button commentAdd; // Value injected by FXMLLoader
+
     
     private void addNodes(Section p, TreeItem<String> t) {
   		t.setExpanded(true);
@@ -73,6 +98,31 @@ public class OnePlanViewController {
     }
     
 
+    @FXML
+    void onClickCommentAdd(ActionEvent event) {
+    	if(internalTesting){System.out.println("InTt - (5.5): (A) onClickCommentAdd(ActionEvent event)");}
+    	
+    }
+
+    @FXML
+    void onClickCommentDelete(ActionEvent event) {
+    	if(internalTesting){System.out.println("InTt - (5.5): (B) onClickCommentDelete(ActionEvent event)");}
+
+    }
+
+    @FXML
+    void onClickCommentResolve(ActionEvent event) {
+    	if(internalTesting){System.out.println("InTt - (5.5): (C) onClickCommentResolve(ActionEvent event)");}
+    }
+
+    @FXML
+    void onClickCommentView(ActionEvent event) {
+    	if(internalTesting){System.out.println("InTt - (5.5): (D) onClickCommentView(ActionEvent event)");}
+    	
+    	System.out.println(TheTreeView.getSelectionModel().getSelectedItem());
+    	TheTreeView.getSelectionModel().getSelectedItem();
+
+    }
     
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
