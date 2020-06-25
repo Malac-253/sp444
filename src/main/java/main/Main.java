@@ -128,10 +128,10 @@ public class Main extends Application {
 					BPExampleD.addSection(BPExampleD.root);
 					BPExampleD.root.content=("I would rather not fail but whose knows at this point ");
 					BPExampleD.root.children.get(0).content=("I will do better in teh future. And i will put this stuff to use this summer");
-					BPExampleB.root.children.get(0).addComment(new Comment(Master,"M - 00"));
-					BPExampleB.root.children.get(0).addComment(new Comment(testA,"I - 00"));
-					BPExampleB.root.children.get(0).addComment(new Comment(testB,"B - 00"));
-					BPExampleB.root.children.get(0).addComment(new Comment(testC,"TAC - 00"));
+					BPExampleD.root.children.get(0).addComment(new Comment(Master,"M - 00"));
+					BPExampleD.root.children.get(0).addComment(new Comment(testA,"I - 00"));
+					BPExampleD.root.children.get(0).addComment(new Comment(testB,"B - 00"));
+					BPExampleD.root.children.get(0).addComment(new Comment(testC,"TAC - 00"));
 					BPExampleD.root.children.get(0).content=("I will do better in teh future. And i will put this stuff to use this summer");
 					BPExampleD.addSection(BPExampleD.root.children.get(0));
 					BPExampleD.root.addComment(new Comment(Master,"Good luck - 00"));

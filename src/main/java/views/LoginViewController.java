@@ -58,7 +58,7 @@ public class LoginViewController {
 
     @FXML
     void onClickSubmit(ActionEvent event) {
-    	
+    	notPass.setOpacity(0);
     	// Block 3 - logging in
     	if(internalTesting){System.out.println("InTt - (3 X): Block 3 - logging in");}
     	
@@ -80,52 +80,53 @@ public class LoginViewController {
 			}else {
 				System.out.println("User: " + UserclientModel.getLoginPerson().getUsername()+" logined.");
 			}
+			
+			//Getting Main View shell
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(MainViewController.class.getResource("../views/MainView.fxml")); 
+				BorderPane MainView = null;
+				
+			//Getting Main View "all"
+				FXMLLoader loader2 = new FXMLLoader();
+				loader2.setLocation(MainViewController.class.getResource("../views/PlanListView.fxml")); 
+				BorderPane MainView2 = null;
+			
+			//Loading the views
+				try {MainView = loader.load();} catch (IOException e) {e.printStackTrace();}
+				try {MainView2 = loader2.load();} catch (IOException e) {e.printStackTrace();}
+				
+			//Get and setting Main view Controller
+				MainViewController ControllerB = loader.getController(); //Get controller1
+				PlanListViewController ControllerC = loader2.getController(); //Get controller
+				MainView.setCenter(MainView2);
+				
+				if(internalTesting){System.out.println("InTt - (3.2): Getting Main Controller, View, and Shell");}
+						
+				ControllerB.setClient(UserclientModel);//Setting the Client
+				ControllerB.setStage(stage);//Setting stage
+				ControllerB.setView(MainView);
+				ControllerC.setClient(UserclientModel);//Setting the Client
+				ControllerC.setStage(stage);//Setting stage
+				ControllerC.setView(MainView);
+				if(internalTesting){System.out.println("InTt - (3.4): Setting the Client to work with");}
+			
+			//Loading up the main Scene
+				Scene s = new Scene(MainView);
+				stage.setScene(s);
+				stage.show();
+				if(internalTesting){System.out.println("InTt - (3.5): Initiating the stage and view");}
+				// Block 4 - Main System
+		    	if(internalTesting){System.out.println("InTt - (4 X): Block 4 - Main System");}
 		}
 		else {
+			notPass.setOpacity(1);
 			if(internalTesting){
 				System.out.println("InTt - (3.1): (C) Wrong username password combination.");
 			}else {
 				System.out.println("Wrong username password combination.");
+				
 			}
 		}
-    	
-    	//Getting Main View shell
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainViewController.class.getResource("../views/MainView.fxml")); 
-			BorderPane MainView = null;
-			
-		//Getting Main View "all"
-			FXMLLoader loader2 = new FXMLLoader();
-			loader2.setLocation(MainViewController.class.getResource("../views/PlanListView.fxml")); 
-			BorderPane MainView2 = null;
-		
-		//Loading the views
-			try {MainView = loader.load();} catch (IOException e) {e.printStackTrace();}
-			try {MainView2 = loader2.load();} catch (IOException e) {e.printStackTrace();}
-			
-		//Get and setting Main view Controller
-			MainViewController ControllerB = loader.getController(); //Get controller1
-			PlanListViewController ControllerC = loader2.getController(); //Get controller
-			MainView.setCenter(MainView2);
-			
-			if(internalTesting){System.out.println("InTt - (3.2): Getting Main Controller, View, and Shell");}
-					
-			ControllerB.setClient(UserclientModel);//Setting the Client
-			ControllerB.setStage(stage);//Setting stage
-			ControllerB.setView(MainView);
-			ControllerC.setClient(UserclientModel);//Setting the Client
-			ControllerC.setStage(stage);//Setting stage
-			ControllerC.setView(MainView);
-			if(internalTesting){System.out.println("InTt - (3.4): Setting the Client to work with");}
-		
-		//Loading up the main Scene
-			Scene s = new Scene(MainView);
-			stage.setScene(s);
-			stage.show();
-			if(internalTesting){System.out.println("InTt - (3.5): Initiating the stage and view");}
-			// Block 4 - Main System
-	    	if(internalTesting){System.out.println("InTt - (4 X): Block 4 - Main System");}
-
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

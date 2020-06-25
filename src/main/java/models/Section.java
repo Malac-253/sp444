@@ -26,7 +26,7 @@ public class Section implements Serializable
 
 	@Override
 	public String toString() {
-		return name;
+		return name+":\n"+content;
 	}
 	
 	public String showContent() {

@@ -8,11 +8,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainViewController">
    <left>
       <SplitPane orientation="VERTICAL" prefHeight="360.0" prefWidth="25.0" BorderPane.alignment="CENTER">
          <items>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00baff" height="511.0" stroke="#ff080800" strokeType="INSIDE" width="21.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00baff" height="946.0" stroke="#ff080800" strokeType="INSIDE" width="21.0" />
          </items>
       </SplitPane>
    </left>

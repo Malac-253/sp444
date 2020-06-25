@@ -28,10 +28,17 @@ public class Comment {
 	//resolved comment
 	public void resolvedComment()
 	{
-		active = false;
+		if(active) {active = false;}
+		else {active = true;}
 	}
 	
 	
+	
+	@Override
+	public String toString() {
+		return username + " || " + date + " || Active="+ active + "\n\t" + commentString ;
+	}
+
 	public String getCommentString() {
 		return commentString;
 	}

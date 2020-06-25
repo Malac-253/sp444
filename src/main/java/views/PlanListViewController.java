@@ -54,6 +54,7 @@ public class PlanListViewController {
     void onClickCopy(ActionEvent event) throws IOException {
     	if(internalTesting){System.out.println("InTt - (4.1): (C) onClickCopy");}
     	BusinessPlan clickedBP=PlanList.getSelectionModel().getSelectedItem();
+    	
     	if(clickedBP!=null) { // if selected
     		UserclientModel.askForBP(clickedBP.year); //get by year
     		//Getting Main View shell

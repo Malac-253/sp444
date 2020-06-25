@@ -9,8 +9,9 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OnePlanViewController">
+<VBox prefHeight="795.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.OnePlanViewController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
@@ -19,9 +20,9 @@
       </ToolBar>
       <Label fx:id="NameLabel" text="Label" />
       <TreeView fx:id="TheTreeView" prefHeight="432.0" prefWidth="569.0" />
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="264.0" prefWidth="696.0">
          <children>
-            <ListView id="commentListView" fx:id="commentListView" prefHeight="104.0" prefWidth="486.0">
+            <ListView id="commentListView" fx:id="commentListView" prefHeight="219.0" prefWidth="580.0">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
@@ -29,8 +30,9 @@
                   <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                </padding>
             </ListView>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="TOP_CENTER" prefHeight="116.0" prefWidth="84.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select comment..." />
                   <Button id="commentResolve" fx:id="commentResolve" mnemonicParsing="false" onAction="#onClickCommentResolve" text="Resolve">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -47,13 +49,26 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </Button>
+                  <Text id="notDelete" fx:id="notDelete" fill="RED" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can't delete comment you didn't make" textAlignment="CENTER" wrappingWidth="99.865234375" />
                </children>
+               <HBox.margin>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </padding>
             </VBox>
          </children>
+         <VBox.margin>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </padding>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <TextArea id="commentAddText" fx:id="commentAddText" prefHeight="100.0" prefWidth="419.0">
+            <TextArea id="commentAddText" fx:id="commentAddText" prefHeight="90.0" prefWidth="531.0">
                <HBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </HBox.margin>
