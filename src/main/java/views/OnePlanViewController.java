@@ -158,7 +158,7 @@ public class OnePlanViewController {
 	    			if(internalTesting){System.out.println("InTt - (5.8): (A.B) Can't delete comment you didn't make");}
 	    			notDelete.setOpacity(1);
 	    			notDelete.setFill(Color.RED);
-	    			notDelete.setText("Can't delete comment you didn't make");
+	    			notDelete.setText("You can't delete comment you didn't make");
 	    		}
 	    		UserclientModel.uploadBP(); //saves comment when made
 	    		
@@ -186,10 +186,10 @@ public class OnePlanViewController {
     	{
     		if(clickedCC.isActive()) {
     			clickedCC.resolvedComment();
-    			if(internalTesting){System.out.println("InTt - (5.8): (B.A) Comment Has been Resolve");}
+    			if(internalTesting){System.out.println("InTt - (5.8): (B.A) Comment Has been Resolved");}
     			notDelete.setOpacity(1);
     			notDelete.setFill(Color.GREEN);
-    			notDelete.setText("Comment Has been Resolve");
+    			notDelete.setText("Comment Has been Resolved");
     		}else {
     			clickedCC.resolvedComment();
     			if(internalTesting){System.out.println("InTt - (5.8): (B.B) Comment is Active ");}

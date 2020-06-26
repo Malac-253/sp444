@@ -120,6 +120,10 @@ public class LoginViewController {
 		}
 		else {
 			notPass.setOpacity(1);
+			login.setText("");
+	    	pass.setText("");
+	    	login1.setText("");
+			
 			if(internalTesting){
 				System.out.println("InTt - (3.1): (C) Wrong username password combination.");
 			}else {

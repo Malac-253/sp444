@@ -19,7 +19,7 @@ public class junk {
 MyRemoteClient UserclientModel;
 
 	
-MyRemoteClient UserclientModel;
+
 
 
 private boolean internalTesting = true;

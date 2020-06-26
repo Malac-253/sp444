@@ -18,7 +18,7 @@
           <Button id="viewComments" fx:id="viewComments" mnemonicParsing="false" onAction="#onClickCommentView" text="Select Section, then click here to view it's comments" />
         </items>
       </ToolBar>
-      <Label fx:id="NameLabel" text="Label" />
+      <Label id="NameLabel" fx:id="NameLabel" text="Label" />
       <TreeView fx:id="TheTreeView" prefHeight="432.0" prefWidth="569.0" />
       <HBox prefHeight="264.0" prefWidth="696.0">
          <children>

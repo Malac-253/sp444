@@ -29,7 +29,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <TextField id="login" fx:id="login" layoutX="103.0" layoutY="4.0" prefHeight="25.0" prefWidth="197.0" text="testAD" />
+                        <TextField id="login" fx:id="login" layoutX="103.0" layoutY="4.0" prefHeight="25.0" prefWidth="197.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="32.0" prefWidth="306.0">
@@ -39,7 +39,7 @@
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <PasswordField id="pass" fx:id="pass" layoutX="103.0" layoutY="4.0" prefHeight="25.0" prefWidth="197.0" text="testAD" />
+                        <PasswordField id="pass" fx:id="pass" layoutX="103.0" layoutY="4.0" prefHeight="25.0" prefWidth="197.0" />
                      </children>
                   </Pane>
                   <Pane prefHeight="32.0" prefWidth="306.0">

@@ -25,7 +25,7 @@
       </VBox>
    </bottom>
    <center>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Place Holder for making a plan" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Text id="newplan" fx:id="newplan" strokeType="OUTSIDE" strokeWidth="0.0" text="Place Holder for making a plan" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
